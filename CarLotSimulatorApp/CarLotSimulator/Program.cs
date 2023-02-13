@@ -1,11 +1,135 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CarLotSimulator
 {
     class Program
     {
+        public class Car
+        {
+            public Car() //Default Constructor
+            {
+            }
+
+            public Car(int year, string make, string model, string engineNoise, string honkNoise, bool isDrivable) //Custom Constructor
+            {
+                Year = year;
+                Make = make;
+                Model = model;
+                EngineNoise = engineNoise;
+                HonkNoise = honkNoise;
+                IsDriveable = isDrivable;
+            }
+
+
+            public int Year { get; set; } //Property
+            public string Make { get; set; } //Property
+            public string Model { get; set; } //Property
+            public string EngineNoise { get; set; } //Property
+            public string HonkNoise { get; set; } //Property
+            public bool IsDriveable { get; set; } //Property
+            public static void MakeEngineNoise(string engingeNoise)
+            {
+                Console.WriteLine(engingeNoise);
+            }
+
+            public static void MakeHonkNoise(string honkNoise)
+            {
+                Console.WriteLine(honkNoise);
+            }
+        }
+
+        public class CarLot
+        {
+            public List<Car> ListOfCars { get; set; } //Property
+        }
         static void Main(string[] args)
         {
+            CarLot myCarLot = new CarLot();
+
+            var myListOfCars = new List<Car>();
+
+            Car car1 = new Car();
+            car1.Year = 1950; //Dot Notation
+            car1.Make = "Ford";
+            car1.Model = "Model-T";
+            car1.EngineNoise = "Vroom Vroom";
+            car1.HonkNoise = "Beep Beep";
+            car1.IsDriveable = true;
+
+            Car.MakeEngineNoise(car1.EngineNoise);
+            Car.MakeHonkNoise(car1.HonkNoise);
+
+            myListOfCars.Add(car1);
+
+            //OR
+
+            //myListOfCars.Add(new Car
+            //{
+            //    Year = car1.Year,
+            //    Make = car1.Make,
+            //    Model = car1.Model,
+            //    EngineNoise = car1.EngineNoise,
+            //    HonkNoise = car1.HonkNoise,
+            //    IsDriveable = car1.IsDriveable
+            //});
+
+            Car car2 = new Car() { Year = 1999, Make = "Honda", Model = "Civic", EngineNoise = "Vroom Vroom Vroom",  HonkNoise = "Beep Beep Beep", IsDriveable = false }; //Object Initializer Syntax
+
+            Car.MakeEngineNoise(car2.EngineNoise);
+            Car.MakeHonkNoise(car2.HonkNoise);
+
+            myListOfCars.Add(car2);
+
+            //OR
+
+            //myListOfCars.Add(new Car
+            //{
+            //    Year = car2.Year,
+            //    Make = car2.Make,
+            //    Model = car2.Model,
+            //    EngineNoise = car2.EngineNoise,
+            //    HonkNoise = car2.HonkNoise,
+            //    IsDriveable = car2.IsDriveable
+            //});
+
+            Car car3 = new Car(2020, "Tesla", "Model 3", "Vroom", "Beep", true); //Custom Constructor
+
+            Car.MakeEngineNoise(car3.EngineNoise);
+            Car.MakeHonkNoise(car3.HonkNoise);
+
+            myListOfCars.Add(car3);
+
+            //OR
+
+            //myListOfCars.Add(new Car
+            //{
+            //    Year = car3.Year,
+            //    Make = car3.Make,
+            //    Model = car3.Model,
+            //    EngineNoise = car3.EngineNoise,
+            //    HonkNoise = car3.HonkNoise,
+            //    IsDriveable = car3.IsDriveable
+            //});
+
+            int counter = 1;
+
+            //foreach (var i in myListOfCars)
+            //{
+            //    Console.WriteLine($"Car {counter}: CarYear: {i.Year}, Make: {i.Make}, Model: {i.Model}");
+            //    counter++;
+            //}
+
+
+            for (int i = 0; i < myListOfCars.Count; i++)
+            {
+                Console.WriteLine( $"Car {counter}: CarYear: {myListOfCars[i].Year}, Make: {myListOfCars[i].Make}, Model: {myListOfCars[i].Model}");
+                counter++;
+            }
+
+
             //TODO
 
             //Create a seperate class file called Car
