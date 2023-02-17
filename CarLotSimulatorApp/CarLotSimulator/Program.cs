@@ -11,6 +11,7 @@ namespace CarLotSimulator
         {
             public Car() //Default Constructor
             {
+                CarLot.numberOfCars++;
             }
 
             public Car(int year, string make, string model, string engineNoise, string honkNoise, bool isDrivable) //Custom Constructor
@@ -43,13 +44,15 @@ namespace CarLotSimulator
 
         public class CarLot
         {
-            public List<Car> ListOfCars { get; set; } //Property
+            public CarLot()
+            {
+            }
+            public static int numberOfCars;
+            public List<Car> ListOfCars { get; set; } = new List<Car>();//Property
         }
         static void Main(string[] args)
         {
             CarLot myCarLot = new CarLot();
-
-            var myListOfCars = new List<Car>();
 
             Car car1 = new Car();
             car1.Year = 1950; //Dot Notation
@@ -62,7 +65,9 @@ namespace CarLotSimulator
             Car.MakeEngineNoise(car1.EngineNoise);
             Car.MakeHonkNoise(car1.HonkNoise);
 
-            myListOfCars.Add(car1);
+            Console.WriteLine($"\nNumber of cars created: {CarLot.numberOfCars}\n");
+
+            myCarLot.ListOfCars.Add(car1);
 
             //OR
 
@@ -81,7 +86,9 @@ namespace CarLotSimulator
             Car.MakeEngineNoise(car2.EngineNoise);
             Car.MakeHonkNoise(car2.HonkNoise);
 
-            myListOfCars.Add(car2);
+            Console.WriteLine($"\nNumber of cars created: {CarLot.numberOfCars}\n");
+
+            myCarLot.ListOfCars.Add(car2);
 
             //OR
 
@@ -100,7 +107,9 @@ namespace CarLotSimulator
             Car.MakeEngineNoise(car3.EngineNoise);
             Car.MakeHonkNoise(car3.HonkNoise);
 
-            myListOfCars.Add(car3);
+            Console.WriteLine($"\nNumber of cars created: {CarLot.numberOfCars}\n");
+
+            myCarLot.ListOfCars.Add(car3);
 
             //OR
 
@@ -123,13 +132,13 @@ namespace CarLotSimulator
             //}
 
 
-            for (int i = 0; i < myListOfCars.Count; i++)
+            for (int i = 0; i < myCarLot.ListOfCars.Count; i++)
             {
-                Console.WriteLine( $"Car {counter}: CarYear: {myListOfCars[i].Year}, Make: {myListOfCars[i].Make}, Model: {myListOfCars[i].Model}");
+                Console.WriteLine( $"Car {counter}: CarYear: {myCarLot.ListOfCars[i].Year}, Make: {myCarLot.ListOfCars[i].Make}, Model: {myCarLot.ListOfCars[i].Model}");
                 counter++;
             }
 
-
+            Console.WriteLine();
             //TODO
 
             //Create a seperate class file called Car
